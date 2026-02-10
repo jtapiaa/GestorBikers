@@ -15,9 +15,9 @@ def list_bikers() -> list[Biker]:
 
     
 # Busca un usuario por su ID
-def find_biker_by_id(biker_id: int) -> Biker | None:
+def find_biker_by_id(rut: str) -> Biker | None:
     for biker in bikers:
-        if biker.rut == biker_id:
+        if biker.rut == rut:
             return biker   
     return None
 

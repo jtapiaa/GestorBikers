@@ -25,28 +25,41 @@ def main():
         try:
             match option:
                 case "1":
-                    rut = input("Enter Biker RUT: ")
-                    while not validate_rut(rut):
-                        print("Invalid RUT. Please try again.")
+                    while True:
                         rut = input("Enter Biker RUT: ")
+                        if not validate_rut(rut):
+                            print("Invalid RUT format. Please try again.")
+                            continue
+                        if find_biker_by_id(rut) is not None:
+                            print("RUT already exists. Please enter a different one.")
+                            continue
+                        break
                     name = input("Enter Biker name: ")
                     last_name = input("Enter Biker last name: ")
-                    age = int(input("Enter Biker age: "))
-                    while type(age) != int or age <= 0:
-                        print("Age must be a positive integer. Please try again.")
-                        age = int(input("Enter Biker age: "))
+                    while True:
+                        age = input("Enter Biker age: ")
+                        try:
+                            age = int(age)
+                            if age <= 0:
+                                print(
+                                    "Age must be a positive integer. Please try again."
+                                )
+                                continue
+                            break
+                        except ValueError:
+                            print("Age must be a positive integer. Please try again.")
                     category = input("Enter Biker category: ")
                     city = input("Enter Biker City: ")
                     club = input("Enter Biker Club: ")
                     biker = Biker(
-                            rut=rut,
-                            name=name,
-                            last_name=last_name,
-                            age=age,
-                            category=category,
-                            city=city,
-                            club=club,
-                        )
+                        rut=rut,
+                        name=name,
+                        last_name=last_name,
+                        age=age,
+                        category=category,
+                        city=city,
+                        club=club,
+                    )
                     print(biker)
                     add_biker(biker)
                     print("Biker added successfully.")
@@ -58,8 +71,8 @@ def main():
                         for biker in bikers:
                             print(biker.to_dict())
                 case "3":
-                    biker_id = input("Enter biker ID to search: ")
-                    biker = find_biker_by_id(biker_id)
+                    biker_rut = input("Enter biker Rut to search: ")
+                    biker = find_biker_by_id(biker_rut)
                     if biker:
                         print("Biker found:", biker.to_dict())
                     else:
@@ -71,7 +84,7 @@ def main():
                     else:
                         print("Biker not found.")
                 case "5":
-                    file_path = input("Enter file path to save bikers: ")
+                    file_path = "src/data/bikers.txt"
                     save_bikers_to_file(list_bikers(), file_path)
                 case "6":
                     print("Exiting...")
