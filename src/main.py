@@ -8,7 +8,7 @@ from services.controller import (
     list_bikers,
     validate_rut,
 )
-from utils.file_manager import save_bikers_to_file
+from utils.file_manager import load_bikers_from_file, save_bikers_to_file
 from utils.module_11 import validate_rut
 
 
@@ -20,7 +20,8 @@ def main():
         print("3. Find biker by ID")
         print("4. Delete biker by ID")
         print("5. Save biker to File")
-        print("6. Exit")
+        print("6. Load biker from File")
+        print("7. Exit")
         option = input("Select an option: ")
         try:
             match option:
@@ -87,13 +88,16 @@ def main():
                     file_path = "src/data/bikers.txt"
                     save_bikers_to_file(list_bikers(), file_path)
                 case "6":
+                    file_path = "src/data/bikers.txt"
+                    bikers_dict = load_bikers_from_file(file_path)
+                    print("Bikers loaded from file:", list(bikers_dict.values()))
+                case "7":
                     print("Exiting...")
                     break
                 case _:
                     print("****** Invalid option. Please try again. ******")
         except Exception as e:
             print("An error occurred:", e)
-
 
 if __name__ == "__main__":
     main()
