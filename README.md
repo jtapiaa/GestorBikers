@@ -19,6 +19,7 @@ Sistema de gestión de ciclistas (bikers) que permite registrar, validar, guarda
 - Archivos TXT (CSV-like)
 
 ## 📂 Estructura del proyecto
+```
 src
 ├── model/
 │ └── biker.py
@@ -31,6 +32,7 @@ src
 |.└── module_11.py
 ├── main.py
 └── README.md
+```
 
 ### 6️⃣ Formato del archivo de datos
 ```md
@@ -46,7 +48,7 @@ Ejemplo:
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/tu-repo.git
+   git clone https://github.com/jtapiaa/GestorBikers.git
 2. Entrar a proyecto
     cd tu-repo
 3. Ejecutar 
